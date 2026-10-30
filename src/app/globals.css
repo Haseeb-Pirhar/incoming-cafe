@@ -1,0 +1,574 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap");
+@import "tailwindcss";
+@import "@radix-ui/themes/styles.css";
+
+@theme {
+  /* mandi / wheat theme palette */
+  --color-wheat: #f4ecd4;
+  --color-wheat-card: #fbf6e9;
+  --color-wheat-border: #e3d5a8;
+  --color-wheat-border-soft: #e8ddb8;
+
+  --color-ink: #2b2b22;
+  --color-ink-muted: #8a8065;
+
+  --color-green: #1d6b4b;
+  --color-green-light: #256b4f;
+  --color-green-muted: #a9c9b4;
+  --color-green-border: #2f7d5b;
+
+  --color-gold: #d4a017;
+  --color-gold-dark: #5c4508;
+
+  --color-rust: #a5432a;
+  --color-rust-light: #f6ddd4;
+
+  /* fonts — bind to the CSS variables injected by next/font in layout.tsx */
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-work-sans);
+  --font-mono: var(--font-jetbrains-mono);
+
+  /* radius */
+  --radius-card: 0.9rem;
+}
+
+.radix-themes {
+  --default-font-family: var(--font-work-sans);
+}
+
+.hide-scrollbar {
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+.AccordionContent {
+  overflow: hidden;
+}
+
+.AccordionContent[data-state="open"] {
+  animation: accordion-down 0.3s ease-in-out;
+}
+
+.AccordionContent[data-state="closed"] {
+  animation: accordion-up 0.3s ease-in-out;
+}
+
+/* Bakra Bazar — shared animation utilities.
+   Import once in app/globals.css:  @import "./category/bakra-bazar-animations.css";
+   (or copy these rules into your existing globals.css)
+*/
+
+@keyframes bb-drift-glow {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -24px) scale(1.08);
+  }
+  66% {
+    transform: translate(-22px, 16px) scale(0.94);
+  }
+}
+
+@keyframes bb-flag-sway {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes bb-draw-underline {
+  from {
+    stroke-dashoffset: 260;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes bb-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes bb-tag-pop {
+  0% {
+    transform: scale(0.5) rotate(-10deg);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.08) rotate(3deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(-4deg);
+    opacity: 1;
+  }
+}
+
+@keyframes bb-tag-swing {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes bb-goat-bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+}
+
+@keyframes bb-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(232, 163, 61, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgba(232, 163, 61, 0);
+  }
+}
+
+@keyframes bb-dialog-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes bb-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes bb-spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bb-orb {
+  animation: bb-drift-glow 14s ease-in-out infinite;
+}
+.bb-flag {
+  animation: bb-flag-sway 3.2s ease-in-out infinite;
+  transform-origin: top center;
+}
+.bb-rise-in {
+  animation: bb-rise-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.bb-tag-pop {
+  animation: bb-tag-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.bb-tag-swing:hover {
+  animation: bb-tag-swing 0.6s ease-in-out;
+}
+.bb-goat-bounce {
+  animation: bb-goat-bounce 2.4s ease-in-out infinite;
+}
+.bb-pulse-ring {
+  animation: bb-pulse-ring 1.8s ease-out infinite;
+}
+.bb-dialog-rise {
+  animation: bb-dialog-rise 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.bb-spin-slow {
+  animation: bb-spin-slow 6s linear infinite;
+}
+.bb-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: bb-shimmer 1.6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bb-orb,
+  .bb-flag,
+  .bb-rise-in,
+  .bb-tag-pop,
+  .bb-tag-swing:hover,
+  .bb-goat-bounce,
+  .bb-pulse-ring,
+  .bb-dialog-rise,
+  .bb-shimmer,
+  .bb-spin-slow {
+    animation: none !important;
+  }
+}
+
+/* Store Admin — shared animation utilities.
+   Import once in app/globals.css:  @import "./category/ecommerce-animations.css";
+   (or copy these rules into your existing globals.css)
+   Replaces the earlier bakra-bazar-animations.css — delete that file if present.
+*/
+
+@keyframes shop-drift-glow {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(26px, -20px) scale(1.06);
+  }
+  66% {
+    transform: translate(-18px, 14px) scale(0.95);
+  }
+}
+
+@keyframes shop-scan-sweep {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes shop-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes shop-tag-pop {
+  0% {
+    transform: scale(0.5) rotate(-8deg);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.08) rotate(2deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(-3deg);
+    opacity: 1;
+  }
+}
+
+@keyframes shop-tag-swing {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes shop-box-bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+@keyframes shop-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgba(255, 107, 53, 0);
+  }
+}
+
+@keyframes shop-dialog-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes shop-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shop-orb {
+  animation: shop-drift-glow 15s ease-in-out infinite;
+}
+.shop-scan {
+  animation: shop-scan-sweep 3.6s ease-in-out infinite;
+}
+.shop-rise-in {
+  animation: shop-rise-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.shop-tag-pop {
+  animation: shop-tag-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.shop-tag-swing:hover {
+  animation: shop-tag-swing 0.6s ease-in-out;
+}
+.shop-box-bounce {
+  animation: shop-box-bounce 2.2s ease-in-out infinite;
+}
+.shop-pulse-ring {
+  animation: shop-pulse-ring 1.8s ease-out infinite;
+}
+.shop-dialog-rise {
+  animation: shop-dialog-rise 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.shop-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shop-shimmer 1.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shop-orb,
+  .shop-scan,
+  .shop-rise-in,
+  .shop-tag-pop,
+  .shop-tag-swing:hover,
+  .shop-box-bounce,
+  .shop-pulse-ring,
+  .shop-dialog-rise,
+  .shop-shimmer {
+    animation: none !important;
+  }
+}
+
+/* ========================= */
+
+/* Store Admin — shared animation utilities.
+   Import once in app/globals.css:  @import "./category/ecommerce-animations.css";
+   (or copy these rules into your existing globals.css)
+   Replaces the earlier bakra-bazar-animations.css — delete that file if present.
+*/
+
+@keyframes shop-drift-glow {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(26px, -20px) scale(1.06);
+  }
+  66% {
+    transform: translate(-18px, 14px) scale(0.95);
+  }
+}
+
+@keyframes shop-scan-sweep {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes shop-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes shop-tag-pop {
+  0% {
+    transform: scale(0.5) rotate(-8deg);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.08) rotate(2deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(-3deg);
+    opacity: 1;
+  }
+}
+
+@keyframes shop-tag-swing {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes shop-box-bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+@keyframes shop-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgba(255, 107, 53, 0);
+  }
+}
+
+@keyframes shop-dialog-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes shop-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shop-orb {
+  animation: shop-drift-glow 15s ease-in-out infinite;
+}
+.shop-scan {
+  animation: shop-scan-sweep 3.6s ease-in-out infinite;
+}
+.shop-rise-in {
+  animation: shop-rise-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.shop-tag-pop {
+  animation: shop-tag-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.shop-tag-swing:hover {
+  animation: shop-tag-swing 0.6s ease-in-out;
+}
+.shop-box-bounce {
+  animation: shop-box-bounce 2.2s ease-in-out infinite;
+}
+.shop-pulse-ring {
+  animation: shop-pulse-ring 1.8s ease-out infinite;
+}
+.shop-dialog-rise {
+  animation: shop-dialog-rise 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.shop-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shop-shimmer 1.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shop-orb,
+  .shop-scan,
+  .shop-rise-in,
+  .shop-tag-pop,
+  .shop-tag-swing:hover,
+  .shop-box-bounce,
+  .shop-pulse-ring,
+  .shop-dialog-rise,
+  .shop-shimmer {
+    animation: none !important;
+  }
+}
