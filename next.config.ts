@@ -124,6 +124,15 @@ const nextConfig: NextConfig = {
         hostname: "pirhar-sahib-hk.s3.ap-south-1.amazonaws.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.shopify.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
       { protocol: "https", hostname: "images.pexels.com", pathname: "/**" }, // not www.pexels.com
     ],
   },
