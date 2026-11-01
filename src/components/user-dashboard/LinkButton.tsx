@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { ACCENT } from "./theme";
+import { ACCENT, COFFEE } from "./theme";
 
 interface LinkButtonProps {
   href: string;
   children: React.ReactNode;
-  variant?: "primary" | "outline" | "light";
+  variant?: "primary" | "outline" | "light" | "dark" | "cream";
   external?: boolean;
 }
 
@@ -33,12 +33,24 @@ export default function LinkButton({
       color: "#fff",
       outlineColor: "#fff",
     },
+    dark: {
+      backgroundColor: COFFEE.espresso,
+      color: "#fff",
+      outlineColor: COFFEE.espresso,
+    },
+    cream: {
+      backgroundColor: COFFEE.cream,
+      color: COFFEE.espresso,
+      outlineColor: COFFEE.cream,
+    },
   } as const;
 
   const hover = {
     primary: "hover:brightness-110 hover:shadow-lg",
     outline: "hover:bg-black/5",
     light: "hover:bg-white/15",
+    dark: "hover:bg-[#4B3A2B] hover:shadow-lg",
+    cream: "hover:brightness-95 hover:shadow-lg",
   } as const;
 
   const cls = `${base} ${hover[variant]}`;

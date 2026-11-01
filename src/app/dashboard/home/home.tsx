@@ -1,16 +1,21 @@
 import Hero from "@/components/user-dashboard/home/Hero";
-import Highlights from "@/components/user-dashboard/home/Highlights";
-import PopularPicks from "@/components/user-dashboard/home/PopularPicks";
+import CategoryStrip from "@/components/user-dashboard/home/CategoryStrip";
+import SignatureBrews from "@/components/user-dashboard/home/SignatureBrews";
+import PremiumBeans from "@/components/user-dashboard/home/PremiumBeans";
 import ImageMarquee from "@/components/user-dashboard/ImageMarquee";
 import VisitUs from "@/components/user-dashboard/home/VisitUs";
+import { COFFEE } from "@/components/user-dashboard/theme";
 
 export default function HomeContent() {
   return (
     <>
       <Hero />
-      <Highlights />
-      <PopularPicks />
-      <ImageMarquee />
+      <CategoryStrip />
+      <SignatureBrews />
+      <PremiumBeans />
+      <div style={{ backgroundColor: COFFEE.cream }}>
+        <ImageMarquee />
+      </div>
       <VisitUs />
     </>
   );

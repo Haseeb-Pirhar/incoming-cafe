@@ -8,6 +8,16 @@ export const ACCENT = {
   ink: "#171717",
 };
 
+// Home page coffee palette (beige + espresso). Ek jagah se poora look badal sakte ho.
+export const COFFEE = {
+  sand: "#E7DCC6",
+  band: "#D8C7A8",
+  cream: "#F6EFE2",
+  espresso: "#2E241C",
+  mocha: "#4B3A2B",
+  caramel: "#B98558",
+};
+
 export const FONT = {
   // Chunky rounded lettering, close to the "incoming cafe" wordmark. Headings only.
   display: "var(--font-chewy), 'Comic Sans MS', cursive",
