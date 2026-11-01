@@ -10,6 +10,7 @@ import LinkButton from "@/components/user-dashboard/LinkButton";
 import VisitUs from "@/components/user-dashboard/home/VisitUs";
 import { COFFEE } from "@/components/user-dashboard/theme";
 import { ABOUT } from "@/constants/about";
+import BannerBird from "@/components/user-dashboard/ui/BannerBird";
 
 const ICONS = { coffee: Coffee, food: Sandwich, options: Leaf };
 
@@ -20,6 +21,7 @@ export default function AboutContent() {
         title={ABOUT.title}
         description={ABOUT.intro}
         image={ABOUT.image}
+        aside={<BannerBird />}
       />
 
       {/* Our story */}

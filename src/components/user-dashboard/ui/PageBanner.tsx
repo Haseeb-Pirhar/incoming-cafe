@@ -6,10 +6,11 @@ interface PageBannerProps {
     title: string;
     description?: string;
     image: { src: string; alt: string };
+    aside?: React.ReactNode; // right side par kuch bhi (bird, badge, etc.)
 }
 
 // Inner pages (Menu, About, Contact) ke liye image header.
-export default function PageBanner({ title, description, image }: PageBannerProps) {
+export default function PageBanner({ title, description, image, aside }: PageBannerProps) {
     return (
         <section className="relative isolate overflow-hidden">
             <Image
@@ -28,22 +29,26 @@ export default function PageBanner({ title, description, image }: PageBannerProp
                         "linear-gradient(90deg, rgba(24,14,8,0.82) 0%, rgba(24,14,8,0.5) 60%, rgba(24,14,8,0.3) 100%)",
                 }}
             />
-            <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-                <Reveal>
-                    <h1
-                        className="text-5xl text-white drop-shadow-lg sm:text-6xl"
-                        style={{ fontFamily: FONT.display }}
-                    >
-                        {title}
-                    </h1>
-                </Reveal>
-                {description && (
-                    <Reveal delay={0.12}>
-                        <p className="mt-4 max-w-xl text-lg leading-relaxed text-white/85">
-                            {description}
-                        </p>
+            <div className="relative z-10 mx-auto flex max-w-6xl items-center justify-between gap-8 px-4 py-20 sm:px-6 sm:py-28">
+                <div>
+                    <Reveal>
+                        <h1
+                            className="text-5xl text-white drop-shadow-lg sm:text-6xl"
+                            style={{ fontFamily: FONT.display }}
+                        >
+                            {title}
+                        </h1>
                     </Reveal>
-                )}
+                    {description && (
+                        <Reveal delay={0.12}>
+                            <p className="mt-4 max-w-xl text-lg leading-relaxed text-white/85">
+                                {description}
+                            </p>
+                        </Reveal>
+                    )}
+                </div>
+
+                {aside && <div className="hidden shrink-0 md:block">{aside}</div>}
             </div>
         </section>
     );

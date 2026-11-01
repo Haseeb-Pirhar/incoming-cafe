@@ -10,6 +10,7 @@ import ContactForm from "@/components/user-dashboard/contact/ContactForm";
 import MapEmbed from "@/components/user-dashboard/contact/MapEmbed";
 import { COFFEE } from "@/components/user-dashboard/theme";
 import { CAFE } from "@/constants/cafe";
+import BannerBird from "@/components/user-dashboard/ui/BannerBird";
 
 export default function ContactContent() {
   return (
@@ -21,6 +22,7 @@ export default function ContactContent() {
           src: "/images/gallery/cafe.jpg",
           alt: "Inside Incoming Cafe, with timber tables and chairs",
         }}
+        aside={<BannerBird />}
       />
 
       <div className="relative overflow-hidden" style={{ backgroundColor: COFFEE.sand }}>
