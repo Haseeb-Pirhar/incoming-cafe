@@ -10,14 +10,11 @@ export default function Hero() {
   const reduce = useReducedMotion();
 
   return (
-    <section
-      className="relative overflow-hidden"
-      style={{ backgroundColor: ACCENT.paper }}
-    >
+    <section className="relative overflow-hidden" style={{ backgroundColor: ACCENT.paper }}>
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 md:py-24">
         <div>
           <h1
-            className="text-4xl font-semibold leading-tight sm:text-5xl"
+            className="text-5xl leading-tight sm:text-6xl"
             style={{ color: ACCENT.ink, fontFamily: FONT.display }}
           >
             {CAFE.tagline}
@@ -42,14 +39,14 @@ export default function Hero() {
             initial={reduce ? false : { rotate: -8, y: 24, opacity: 0 }}
             animate={{ rotate: -2, y: 0, opacity: 1 }}
             transition={{ type: "spring", stiffness: 120, damping: 14 }}
-            className="rounded-3xl p-6 sm:p-8"
+            className="rounded-3xl px-8 py-6 sm:px-12 sm:py-8"
             style={{
               backgroundColor: ACCENT.card,
               border: `3px solid ${ACCENT.ink}`,
               boxShadow: `10px 12px 0 ${ACCENT.teal}`,
             }}
           >
-            <Logo size={240} withText={false} href={null} />
+            <Logo variant="full" width={260} href={null} />
           </motion.div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { CAFE, NAV_LINKS } from "@/constants/cafe";
 import Logo from "./Logo";
+import { CAFE, NAV_LINKS } from "@/constants/cafe";
 import { ACCENT, FONT } from "./theme";
 
 export default function Footer() {
@@ -8,20 +8,13 @@ export default function Footer() {
     <footer style={{ backgroundColor: ACCENT.tealDark, color: "#fff" }}>
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div>
-          <div className="inline-block rounded-xl bg-white/95 p-2">
-            <Logo size={48} withText={false} href={null} />
-          </div>
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/75">
-            {CAFE.intro}
-          </p>
+          <Logo variant="full" tone="light" width={150} href={null} />
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/75">{CAFE.intro}</p>
         </div>
 
         <div>
-          <h4
-            className="text-lg font-semibold"
-            style={{ fontFamily: FONT.display }}
-          >
-            Pages
+          <h4 className="text-xl" style={{ fontFamily: FONT.display }}>
+            pages
           </h4>
           <ul className="mt-3 space-y-2 text-sm text-white/75">
             {NAV_LINKS.map(({ href, label }) => (
@@ -35,11 +28,8 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4
-            className="text-lg font-semibold"
-            style={{ fontFamily: FONT.display }}
-          >
-            Find us
+          <h4 className="text-xl" style={{ fontFamily: FONT.display }}>
+            find us
           </h4>
           <address className="mt-3 space-y-1 text-sm not-italic text-white/75">
             <p>{CAFE.address.line1}</p>

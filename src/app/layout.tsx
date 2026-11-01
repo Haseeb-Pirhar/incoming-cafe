@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Fraunces, Work_Sans } from "next/font/google";
+import { Chewy, Work_Sans } from "next/font/google";
 import { Theme } from "@radix-ui/themes";
 import "./globals.css";
 import { ToastProvider } from "@/components/ui/toast";
 
-const fraunces = Fraunces({
+// Chewy is the closest free Google font to the chunky "incoming cafe" lettering.
+const chewy = Chewy({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-fraunces",
+  weight: "400",
+  variable: "--font-chewy",
 });
 
 const workSans = Work_Sans({
@@ -53,14 +54,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${fraunces.variable} ${workSans.variable} font-body antialiased`}
+        className={`${chewy.variable} ${workSans.variable} font-body antialiased`}
         suppressHydrationWarning
       >
         <ToastProvider />
         <Theme
           accentColor="teal"
           radius="medium"
-          className="flex min-h-screen w-full flex-col bg-[#EEF2EE]!"
+          className="flex min-h-[100vh] w-full flex-col !bg-[#F1F0EC]"
         >
           {children}
         </Theme>

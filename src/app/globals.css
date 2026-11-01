@@ -572,3 +572,9 @@
     animation: none !important;
   }
 }
+
+
+/* incoming style */
+
+h1, h2 { text-transform: lowercase; }
+h1, h2, h3, h4 { font-synthesis: none; }
