@@ -5,7 +5,6 @@ import { useFormContext } from "react-hook-form";
 import { GoolgePlaceType } from "@/types/google";
 import { googleAPI } from "@/api/api-call/google-api";
 import { TextField, Text, Flex } from "@radix-ui/themes";
-import { FormFieldError } from "./form";
 
 interface LocationInputProps {
   label?: string;
@@ -124,9 +123,7 @@ const LocationInput: React.FC<LocationInputProps> = ({
           }}
           placeholder={placeholder}
         />
-        {searchText === "" && (
-          <FormFieldError name={field} className="text-red-500" />
-        )}
+        {searchText === ""}
 
         {/* Suggestions Dropdown */}
         {places.length > 0 && (

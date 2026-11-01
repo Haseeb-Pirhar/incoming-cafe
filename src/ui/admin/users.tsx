@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import type { User as UserType } from "@/types";
 import Loader from "@/components/ui/loader";
-import { getAllUsers } from "@/api/api-call/users-api";
 import FilterTabs from "@/components/ui/filterTabs";
 
 export function AdminUsers() {
@@ -74,9 +73,9 @@ export function AdminUsers() {
     try {
       setLoading(true);
       setError(null);
-      const userData = await getAllUsers();
-      setUsers(userData || []);
-      setFilteredUsers(userData || []);
+    
+      setUsers([]);
+      setFilteredUsers([]);
     } catch (err) {
       setError("Failed to fetch users. Please try again.");
       console.error("Error fetching users:", err);

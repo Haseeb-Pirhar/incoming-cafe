@@ -1,7 +1,6 @@
 import React from "react";
 import { Select, Text } from "@radix-ui/themes";
 import { useFormContext } from "react-hook-form";
-import { FormFieldError } from "@/components/form";
 
 const SelectDropdown = ({
   options,
@@ -54,7 +53,6 @@ const SelectDropdown = ({
               ))}
             </Select.Content>
           </Select.Root>
-          <FormFieldError name={field} className="text-red-500" />
         </div>
       )}
 
@@ -69,17 +67,15 @@ const SelectDropdown = ({
                 key={option.value}
                 type="button"
                 onClick={() => form.setValue(field, option.value)}
-                className={`px-4 py-1.5 text-sm rounded-full cursor-pointer border-[#D0DAEE] border-[0.5px] ${
-                  value === option.value
+                className={`px-4 py-1.5 text-sm rounded-full cursor-pointer border-[#D0DAEE] border-[0.5px] ${value === option.value
                     ? "bg-[#F65A26] text-white"
                     : "bg-[#F2F2F3] text-gray-700 "
-                }`}
+                  }`}
               >
                 {option.label}
               </button>
             ))}
           </div>
-          <FormFieldError name={field} className="text-red-500" />
         </div>
       )}
     </>

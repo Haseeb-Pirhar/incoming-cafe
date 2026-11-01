@@ -2,7 +2,6 @@
 import { Text } from "@radix-ui/themes";
 import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
-import Counter from "./animations/Counter";
 
 const Counters = ({ field, label }: any) => {
   const {
@@ -32,24 +31,15 @@ const Counters = ({ field, label }: any) => {
           <button
             type="button"
             onClick={() => setValue(field, Math.max(0, value - 1))}
-            className={`border-[1.8px] rounded-full px-2 ${
-              value !== 0
+            className={`border-[1.8px] rounded-full px-2 ${value !== 0
                 ? "border-black text-black cursor-pointer"
                 : "border-[#7D7F88] text-[#7D7F88]"
-            }`}
+              }`}
           >
             −
           </button>
           <Text className="text-sm ">
-            <Counter
-              value={value}
-              places={[10, 1]}
-              padding={5}
-              gap={2}
-              fontSize={18}
-              textColor="#1A1E25"
-              fontWeight={400}
-            />
+
           </Text>
           <button
             type="button"

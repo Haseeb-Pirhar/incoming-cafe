@@ -10,8 +10,6 @@ import NavRes from "./Navres";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { useAuthStore } from "@/store/profileStore";
 import { useExtraStore } from "@/store/extraStore";
-import { getLikes } from "@/api/api-call/products";
-import { Likes } from "@/types/recientItem";
 import { logout } from "@/api/api-call/auth-api";
 import { clearClientAuthCookies } from "@/utils/client-cookies";
 import ProfileDropMenu from "@/components/ProfileDropMenu";
@@ -56,23 +54,16 @@ function UserNavbar() {
 
   useEffect(() => {
     if (!user?._id) return;
-    const fetchLikes = async () => {
-      const userLikes = await getLikes(user?._id);
-      if (userLikes?.data) {
-        setLikes(userLikes.data as Likes[]);
-      }
-    };
-    fetchLikes();
+
   }, [user?._id]);
 
   return (
     <>
       <header
-        className={`sticky top-0 z-50 w-full   transition-colors duration-200 ${
-          isScrolled
+        className={`sticky top-0 z-50 w-full   transition-colors duration-200 ${isScrolled
             ? "bg-orange-100 border-gray-400 shadow-md"
             : "bg-transparent border-transparent"
-        }`}
+          }`}
       >
         <nav className="px-4 py-6 lg:py-5 ">
           <Flex justify="between" align="center" px="4">
@@ -100,11 +91,10 @@ function UserNavbar() {
                     <li key={href}>
                       <Link
                         href={href}
-                        className={`text-lg capitalize font-medium ${
-                          pathname.startsWith(href)
+                        className={`text-lg capitalize font-medium ${pathname.startsWith(href)
                             ? "font-bold text-[#00B0A6]"
                             : "font-normal text-[#F25822]"
-                        }`}
+                          }`}
                       >
                         {label}
                       </Link>

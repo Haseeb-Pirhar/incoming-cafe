@@ -1,9 +1,9 @@
-import { Likes } from "@/types/recientItem";
+
 import { create } from "zustand";
 
 interface ExtraState {
-  likes: Likes[];
-  setLikes: (likes: Likes[]) => void;
+  likes: any[];
+  setLikes: (likes: any[]) => void;
 }
 
 export const useExtraStore = create<ExtraState>((set) => ({

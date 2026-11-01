@@ -5,7 +5,6 @@ import { useFormContext, Controller } from "react-hook-form";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { validateUsername } from "@/api/api-call/auth-api";
 import { BsPatchCheck, BsPatchExclamation } from "react-icons/bs";
-import { FormFieldError } from "./form/form-field-error";
 
 interface FormInputProps {
   label?: string;
@@ -131,7 +130,7 @@ const FormInput = ({
             )}
           />
         </Flex>
-        <FormFieldError name={field} className="text-red-500" />
+
       </div>
     );
   }
@@ -199,7 +198,6 @@ const FormInput = ({
           </Flex>
         )}
       </Flex>
-      <FormFieldError name={field} className="text-red-500" />
     </div>
   );
 };
