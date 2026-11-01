@@ -6,11 +6,11 @@ import SectionHeading from "../SectionHeading";
 import Reveal from "../ui/Reveal";
 import FloatingBackground from "../ui/FloatingBackground";
 import { CAFE } from "@/constants/cafe";
-import { ACCENT } from "../theme";
+import { COFFEE } from "../theme";
 
 export default function VisitUs() {
   return (
-    <div className="relative overflow-hidden" style={{ backgroundColor: `${ACCENT.teal}14` }}>
+    <div className="relative overflow-hidden" style={{ backgroundColor: COFFEE.sand }}>
       <FloatingBackground tone="light" icons={false} />
       <div className="relative z-10">
         <Section>
@@ -21,7 +21,7 @@ export default function VisitUs() {
             />
           </Reveal>
           <div className="mt-10 grid gap-5 md:grid-cols-2">
-            <Reveal>
+            <Reveal className="h-full">
               <InfoCard icon={MapPin} title="Address">
                 <p>{CAFE.address.line1}</p>
                 <p>{CAFE.address.line2}</p>
@@ -29,7 +29,7 @@ export default function VisitUs() {
             </Reveal>
 
             {CAFE.hours.length > 0 && (
-              <Reveal delay={0.12}>
+              <Reveal delay={0.12} className="h-full">
                 <InfoCard icon={Clock} title="Opening hours">
                   {CAFE.hours.map((h) => (
                     <p key={h.days}>
@@ -41,7 +41,7 @@ export default function VisitUs() {
             )}
           </div>
           <Reveal className="mt-8" delay={0.2}>
-            <LinkButton href={CAFE.address.mapsUrl} external>
+            <LinkButton href={CAFE.address.mapsUrl} external variant="dark">
               Get directions
             </LinkButton>
           </Reveal>

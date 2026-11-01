@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { CheckCircle2, Send } from "lucide-react";
 import FormField from "../FormField";
 import { sendContactMessage } from "@/api/api-call/contact";
-import { ACCENT } from "../theme";
+import { COFFEE, FONT } from "../theme";
 
 type Values = { name: string; email: string; message: string };
 type Errors = Partial<Record<keyof Values, string>>;
@@ -14,7 +15,8 @@ const EMPTY: Values = { name: "", email: "", message: "" };
 function validate(v: Values): Errors {
     const errors: Errors = {};
     if (!v.name.trim()) errors.name = "Please enter your name.";
-    if (!/^\S+@\S+\.\S+$/.test(v.email.trim())) errors.email = "Please enter a valid email address.";
+    if (!/^\S+@\S+\.\S+$/.test(v.email.trim()))
+        errors.email = "Please enter a valid email address.";
     if (v.message.trim().length < 10) errors.message = "Please write at least 10 characters.";
     return errors;
 }
@@ -25,10 +27,11 @@ export default function ContactForm() {
     const [status, setStatus] = useState<Status>("idle");
 
     const handleChange =
-        (key: keyof Values) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-            setValues((v) => ({ ...v, [key]: e.target.value }));
-            if (status !== "idle") setStatus("idle");
-        };
+        (key: keyof Values) =>
+            (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+                setValues((v) => ({ ...v, [key]: e.target.value }));
+                if (status !== "idle") setStatus("idle");
+            };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -50,9 +53,19 @@ export default function ContactForm() {
         <form
             onSubmit={handleSubmit}
             noValidate
-            className="space-y-5 rounded-2xl p-6 sm:p-8"
-            style={{ backgroundColor: ACCENT.card, border: `1px solid ${ACCENT.ink}1A` }}
+            className="space-y-5 rounded-3xl p-6 shadow-xl sm:p-8"
+            style={{
+                backgroundColor: COFFEE.cream,
+                border: `1px solid ${COFFEE.espresso}1A`,
+            }}
         >
+            <h2
+                className="text-3xl font-semibold"
+                style={{ color: COFFEE.espresso, fontFamily: FONT.display }}
+            >
+                Send us a message
+            </h2>
+
             <FormField
                 id="name"
                 label="Your name"
@@ -82,15 +95,26 @@ export default function ContactForm() {
             <button
                 type="submit"
                 disabled={status === "sending"}
-                className="rounded-full px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2"
-                style={{ backgroundColor: ACCENT.teal, outlineColor: ACCENT.teal }}
+                className="group inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#4B3A2B] hover:shadow-lg disabled:opacity-60 disabled:hover:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2"
+                style={{ backgroundColor: COFFEE.espresso, outlineColor: COFFEE.espresso }}
             >
                 {status === "sending" ? "Sending..." : "Send message"}
+                <Send
+                    size={16}
+                    aria-hidden
+                    className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5"
+                />
             </button>
 
             <div role="status" aria-live="polite" className="text-sm">
                 {status === "sent" && (
-                    <p style={{ color: ACCENT.tealDark }}>Thanks, your message has been sent.</p>
+                    <p
+                        className="flex items-center gap-2 font-medium"
+                        style={{ color: COFFEE.mocha }}
+                    >
+                        <CheckCircle2 size={18} aria-hidden />
+                        Thanks, your message has been sent.
+                    </p>
                 )}
                 {status === "error" && (
                     <p style={{ color: "#B3261E" }}>

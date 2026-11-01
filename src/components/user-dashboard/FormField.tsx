@@ -1,4 +1,4 @@
-import { ACCENT } from "./theme";
+import { COFFEE } from "./theme";
 
 interface FormFieldProps {
     id: string;
@@ -34,17 +34,21 @@ export default function FormField({
         "aria-invalid": error ? true : undefined,
         "aria-describedby": error ? `${id}-error` : undefined,
         className:
-            "w-full rounded-xl bg-white px-4 py-3 text-base outline-none focus-visible:outline-2 focus-visible:outline-offset-1",
+            "w-full rounded-2xl bg-white px-4 py-3 text-base outline-none transition focus-visible:outline-2 focus-visible:outline-offset-1 focus:shadow-md",
         style: {
-            border: `1.5px solid ${error ? ERROR_COLOR : `${ACCENT.ink}4D`}`,
-            color: ACCENT.ink,
-            outlineColor: ACCENT.teal,
+            border: `1.5px solid ${error ? ERROR_COLOR : `${COFFEE.espresso}4D`}`,
+            color: COFFEE.espresso,
+            outlineColor: COFFEE.caramel,
         },
     };
 
     return (
         <div>
-            <label htmlFor={id} className="mb-1.5 block text-sm font-medium" style={{ color: ACCENT.ink }}>
+            <label
+                htmlFor={id}
+                className="mb-1.5 block text-sm font-medium"
+                style={{ color: COFFEE.espresso }}
+            >
                 {label}
             </label>
             {multiline ? (

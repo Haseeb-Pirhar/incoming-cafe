@@ -1,5 +1,8 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { COFFEE } from "../theme";
+
 interface Option {
   key: string;
   label: string;
@@ -11,15 +14,11 @@ interface CategoryTabsProps {
   onChange: (key: string) => void;
 }
 
-// Filter pills, styled for the dark menu board.
-export default function CategoryTabs({
-  options,
-  active,
-  onChange,
-}: CategoryTabsProps) {
+// Filter pills. Active pill layoutId ki wajah se ek tab se doosre tak slide karta hai.
+export default function CategoryTabs({ options, active, onChange }: CategoryTabsProps) {
   return (
     <div
-      className="flex flex-wrap gap-2"
+      className="flex gap-1 overflow-x-auto rounded-full border border-white/60 bg-white/75 p-1.5 shadow-lg backdrop-blur-md [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       role="group"
       aria-label="Menu categories"
     >
@@ -31,22 +30,21 @@ export default function CategoryTabs({
             type="button"
             onClick={() => onChange(o.key)}
             aria-pressed={isActive}
-            className="rounded-full px-5 py-2 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            style={
-              isActive
-                ? {
-                    backgroundColor: "#fff",
-                    color: "#1E2B2D",
-                    border: "1.5px solid #fff",
-                  }
-                : {
-                    backgroundColor: "transparent",
-                    color: "#fff",
-                    border: "1.5px solid rgba(255,255,255,0.4)",
-                  }
-            }
+            className="relative shrink-0 rounded-full px-5 py-2 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+            style={{
+              color: isActive ? "#fff" : COFFEE.espresso,
+              outlineColor: COFFEE.espresso,
+            }}
           >
-            {o.label}
+            {isActive && (
+              <motion.span
+                layoutId="menu-tab-pill"
+                className="absolute inset-0 rounded-full"
+                style={{ backgroundColor: COFFEE.espresso }}
+                transition={{ type: "spring", stiffness: 380, damping: 32 }}
+              />
+            )}
+            <span className="relative z-10">{o.label}</span>
           </button>
         );
       })}
