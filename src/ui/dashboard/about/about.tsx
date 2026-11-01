@@ -1,117 +1,59 @@
-"use client";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import { useEffect, useRef } from "react";
+import Image from "next/image";
+import { Coffee, Leaf, Sandwich } from "lucide-react";
+import PageHero from "@/components/user-dashboard/PageHero";
+import Section from "@/components/user-dashboard/Section";
+import SectionHeading from "@/components/user-dashboard/SectionHeading";
+import HighlightCard from "@/components/user-dashboard/HighlightCard";
+import VisitUs from "@/components/user-dashboard/home/VisitUs";
 import { ACCENT } from "@/components/user-dashboard/theme";
+import { ABOUT } from "@/constants/about";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: (i = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.08, duration: 0.5, ease: "easeOut" as const },
-  }),
-};
-
-function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (v) => Math.round(v).toLocaleString());
-  useEffect(() => {
-    const controls = animate(count, to, { duration: 1.6, ease: "easeOut" });
-    return controls.stop;
-  }, [to]);
-  return (
-    <span style={{ color: ACCENT.marigold }}>
-      <motion.span>{rounded}</motion.span>
-      {suffix}
-    </span>
-  );
-}
+const ICONS = { coffee: Coffee, food: Sandwich, options: Leaf };
 
 export default function AboutContent() {
   return (
-    <div style={{ backgroundColor: ACCENT.paper }}>
-      <section
-        className="px-6 py-20 text-center"
-        style={{ backgroundColor: ACCENT.plum }}
-      >
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-4xl font-extrabold text-white sm:text-5xl"
-          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-        >
-          Humari Kahani
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.15 }}
-          className="mx-auto mt-4 max-w-2xl text-white/60"
-        >
-          happyLife ek chhoti si soch se shuru hua — everyday things that make
-          everyday life a little happier. Products picked, priced, aur shipped
-          with care.
-        </motion.p>
-      </section>
+    <>
+      <PageHero title={ABOUT.title} description={ABOUT.intro} />
 
-      <section className="mx-auto grid max-w-4xl grid-cols-3 gap-4 px-6 py-14 text-center">
-        {[
-          { n: 15000, s: "+", label: "Happy Customers" },
-          { n: 500, s: "+", label: "Products" },
-          { n: 4, s: " yrs", label: "In Business" },
-        ].map((item, i) => (
-          <motion.div
-            key={item.label}
-            custom={i}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-          >
-            <div className="text-3xl font-extrabold sm:text-4xl">
-              <Counter to={item.n} suffix={item.s} />
+      <Section>
+        <div className="grid items-center gap-10 md:grid-cols-2">
+          <div>
+            <SectionHeading title={ABOUT.storyTitle} />
+            <div
+              className="mt-5 space-y-4 text-base leading-relaxed"
+              style={{ color: `${ACCENT.ink}CC` }}
+            >
+              {ABOUT.story.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
             </div>
-            <p
-              className="mt-1 text-xs sm:text-sm"
-              style={{ color: `${ACCENT.ink}80` }}
-            >
-              {item.label}
-            </p>
-          </motion.div>
-        ))}
-      </section>
+          </div>
 
-      <section className="mx-auto max-w-4xl px-6 pb-20">
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          {[
-            {
-              title: "Mission",
-              text: "Quality products ko sab tak affordable banana.",
-            },
-            {
-              title: "Vision",
-              text: "Pakistan ki sabse trusted online shopping choice banna.",
-            },
-          ].map((b, i) => (
-            <motion.div
-              key={b.title}
-              custom={i}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="rounded-2xl border-2 p-6"
-              style={{
-                borderColor: ACCENT.ink,
-                backgroundColor: i === 0 ? ACCENT.coral : ACCENT.teal,
-              }}
-            >
-              <h3 className="text-lg font-extrabold text-white">{b.title}</h3>
-              <p className="mt-2 text-sm text-white/85">{b.text}</p>
-            </motion.div>
+          <div
+            className="relative aspect-[4/3] overflow-hidden rounded-3xl"
+            style={{ border: `3px solid ${ACCENT.ink}`, boxShadow: `10px 12px 0 ${ACCENT.teal}` }}
+          >
+            <Image
+              src={ABOUT.image.src}
+              alt={ABOUT.image.alt}
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </Section>
+
+      <Section className="pt-0 sm:pt-0">
+        <SectionHeading title={ABOUT.valuesTitle} />
+        <div className="mt-10 grid gap-5 sm:grid-cols-3">
+          {ABOUT.values.map((v) => (
+            <HighlightCard key={v.key} icon={ICONS[v.key]} title={v.title} text={v.text} />
           ))}
         </div>
-      </section>
-    </div>
+      </Section>
+
+      <VisitUs />
+    </>
   );
 }
