@@ -1,9 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { ChevronDown, MapPin } from "lucide-react";
+import { CalendarCheck, ChevronDown, MapPin } from "lucide-react";
 import LinkButton from "../LinkButton";
 import VideoBackground from "../ui/VideoBackground";
+import Modal from "../ui/Modal";
+import BookingForm from "./BookingForm";
 import { CAFE } from "@/constants/cafe";
 import { FONT } from "../theme";
 
@@ -22,6 +25,7 @@ const OVERLAY =
 
 export default function Hero() {
   const reduce = useReducedMotion();
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   return (
     <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden">
@@ -32,7 +36,7 @@ export default function Hero() {
         overlay={OVERLAY}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-28 pt-40 sm:px-6">
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl items-end gap-10 px-4 pb-24 pt-28 sm:px-6 lg:grid-cols-[1fr_380px]">
         <motion.div
           className="max-w-xl"
           variants={container}
@@ -66,7 +70,26 @@ export default function Hero() {
             <LinkButton href="/dashboard/contact" variant="light">
               Find us
             </LinkButton>
+            {/* Chhoti screen par form modal me khulta hai */}
+            <button
+              type="button"
+              onClick={() => setBookingOpen(true)}
+              className="inline-flex items-center justify-center gap-2 rounded-full border-[1.5px] border-white/80 px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:hidden"
+            >
+              <CalendarCheck size={16} aria-hidden />
+              Book a table
+            </button>
           </motion.div>
+        </motion.div>
+
+        {/* Desktop: right side booking card */}
+        <motion.div
+          className="hidden lg:block"
+          initial={reduce ? false : { opacity: 0, x: 50, y: 20 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ type: "spring", stiffness: 100, damping: 18, delay: 0.5 }}
+        >
+          <BookingForm />
         </motion.div>
       </div>
 
@@ -78,6 +101,14 @@ export default function Hero() {
       >
         <ChevronDown size={30} />
       </motion.div>
+
+      <Modal
+        open={bookingOpen}
+        onClose={() => setBookingOpen(false)}
+        label="Book a table"
+      >
+        <BookingForm />
+      </Modal>
     </section>
   );
 }

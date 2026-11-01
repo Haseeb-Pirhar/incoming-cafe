@@ -4,6 +4,7 @@ import SignatureBrews from "@/components/user-dashboard/home/SignatureBrews";
 import PremiumBeans from "@/components/user-dashboard/home/PremiumBeans";
 import ImageMarquee from "@/components/user-dashboard/ImageMarquee";
 import VisitUs from "@/components/user-dashboard/home/VisitUs";
+import ReviewsMarquee from "@/components/user-dashboard/home/ReviewsMarquee";
 import { COFFEE } from "@/components/user-dashboard/theme";
 
 export default function HomeContent() {
@@ -17,6 +18,7 @@ export default function HomeContent() {
         <ImageMarquee />
       </div>
       <VisitUs />
+      <ReviewsMarquee />
     </>
   );
 }

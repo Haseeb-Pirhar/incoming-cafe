@@ -1,6 +1,7 @@
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Banknote, Clock, Mail, MapPin, Phone } from "lucide-react";
 import PageBanner from "@/components/user-dashboard/ui/PageBanner";
 import Reveal from "@/components/user-dashboard/ui/Reveal";
+import HoursList from "@/components/user-dashboard/ui/HoursList";
 import FloatingBackground from "@/components/user-dashboard/ui/FloatingBackground";
 import Section from "@/components/user-dashboard/Section";
 import InfoCard from "@/components/user-dashboard/InfoCard";
@@ -35,8 +36,24 @@ export default function ContactContent() {
                   </InfoCard>
                 </Reveal>
 
-                {CAFE.phone && (
+                {CAFE.hours.length > 0 && (
                   <Reveal delay={0.08}>
+                    <InfoCard icon={Clock} title="Opening hours">
+                      <HoursList hours={CAFE.hours} />
+                    </InfoCard>
+                  </Reveal>
+                )}
+
+                {CAFE.price && (
+                  <Reveal delay={0.16}>
+                    <InfoCard icon={Banknote} title="Price">
+                      <p>{CAFE.price}</p>
+                    </InfoCard>
+                  </Reveal>
+                )}
+
+                {CAFE.phone && (
+                  <Reveal delay={0.24}>
                     <InfoCard icon={Phone} title="Phone">
                       <a href={`tel:${CAFE.phone.replace(/\s/g, "")}`} className="underline">
                         {CAFE.phone}
@@ -46,7 +63,7 @@ export default function ContactContent() {
                 )}
 
                 {CAFE.email && (
-                  <Reveal delay={0.16}>
+                  <Reveal delay={0.32}>
                     <InfoCard icon={Mail} title="Email">
                       <a href={`mailto:${CAFE.email}`} className="underline">
                         {CAFE.email}
@@ -55,19 +72,7 @@ export default function ContactContent() {
                   </Reveal>
                 )}
 
-                {CAFE.hours.length > 0 && (
-                  <Reveal delay={0.24}>
-                    <InfoCard icon={Clock} title="Opening hours">
-                      {CAFE.hours.map((h) => (
-                        <p key={h.days}>
-                          {h.days}: {h.time}
-                        </p>
-                      ))}
-                    </InfoCard>
-                  </Reveal>
-                )}
-
-                <Reveal delay={0.3}>
+                <Reveal delay={0.4}>
                   <LinkButton href={CAFE.address.mapsUrl} external variant="dark">
                     Get directions
                   </LinkButton>

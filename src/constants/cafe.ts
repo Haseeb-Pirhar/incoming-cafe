@@ -8,12 +8,29 @@ export const CAFE = {
   address: {
     line1: "24 Hunter Street",
     line2: "Parramatta NSW",
+    plusCode: "52M2+V6 Parramatta, New South Wales, Australia",
+    plusCodeUrl:
+      "https://www.google.com/maps/search/?api=1&query=52M2%2BV6+Parramatta+New+South+Wales+Australia",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Incoming+Cafe+24+Hunter+Street+Parramatta",
   },
-  // Add real opening hours when you have them, e.g. { days: "Mon to Fri", time: "7am to 3pm" }
-  hours: [] as { days: string; time: string }[],
+  // Google listing ke hisaab se. Opening se pehle ek baar owner se confirm kar lena.
+  hours: [
+    { days: "Monday", time: "Closed" },
+    { days: "Tuesday", time: "6am to 2:30pm" },
+    { days: "Wednesday", time: "6am to 2:30pm" },
+    { days: "Thursday", time: "6am to 2:30pm" },
+    { days: "Friday", time: "6am to 2:30pm" },
+    { days: "Saturday", time: "Closed" },
+    { days: "Sunday", time: "Closed" },
+  ] as { days: string; time: string }[],
+  price: "$1 to $20 per person",
+  priceBands: "$20 to $40 two people, $40 to $60 four people, $60 to $80 six people".split(", "),
   // Add phone / email / instagram when you have them (used in Footer + Contact page)
+  instagram: {
+    handle: "@incomingcafe",
+    url: "https://www.instagram.com/incomingcafe/",
+  },
   phone: "",
   email: "",
 };
